@@ -16,6 +16,7 @@ class ParentModel extends Model
         'mobile_number',
         'date_of_birth',
         'email',
+        'gender',
         'created_by'
     ];
 

@@ -13,6 +13,7 @@ class CreateParent extends Component
     public $date_of_birth;
     public $mobile_number;
     public $email;
+    public $gender;
 
     protected $rules = [
         'parent_name' => 'required|string|max:255',
@@ -20,6 +21,7 @@ class CreateParent extends Component
         'date_of_birth' => 'required|date',
         'mobile_number' => 'required|digits:10',
         'email' => 'required|email|max:255|unique:parents',
+        'gender' => 'required'
     ];
 
     public function save()
@@ -31,6 +33,7 @@ class CreateParent extends Component
             'child_name' => $this->child_name,
             'date_of_birth' => $this->date_of_birth,
             'mobile_number' => $this->mobile_number,
+            'gender'=>$this->gender,
             'email' => $this->email,
             'created_by'=>Auth::user()->id
         ]);
