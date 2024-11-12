@@ -34,13 +34,13 @@
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-                <select type="text" id="language" wire:model="language" 
+                <select type="text" id="language" wire:model="gender"
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
                 <option  value="">Select Gender</option>
                 <option value="Male" >Male</option>
                 <option value="Female" >Female</option>
             </select>
-                @error('child_name')
+                @error('gender')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
@@ -71,13 +71,25 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
-     
+
+        <div class="mb-4">
+            <label for="language" class="block text-sm font-medium text-gray-700">Preferred Language</label>
+            <select type="text" id="language" wire:model="language"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
+                <option selected value="">Select Language</option>
+                @foreach ($languages as $item)
+                    <option value="{{$item->language_id}}" selected>{{$item->name}}</option>
+                @endforeach
+            </select>
+            @error('language') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+
             <div class="flex justify-between items-center">
             <button type="submit"
                 class="bg-green-900 text-white px-6 py-2 rounded hover:bg-green-700 focus:outline-none">
                 Save
             </button>
-            <a href="{{ route('parents') }}" 
+            <a href="{{ route('parents') }}"
                class="inline-block bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Cancel</a>
         </div>
     </form>

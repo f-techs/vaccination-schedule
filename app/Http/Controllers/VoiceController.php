@@ -18,9 +18,9 @@ class VoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($message = null  )
     {
-        return view('voices.create');
+        return view('voices.create', ['message'=>$message]);
     }
 
     /**

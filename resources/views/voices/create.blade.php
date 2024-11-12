@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('create-voice')
+    @livewire('create-voice', ['message'=>$message])
 </x-app-layout>

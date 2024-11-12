@@ -32,6 +32,7 @@
                     <th class="border border-gray-300 px-4 py-2">Date of Birth</th>
                     <th class="border border-gray-300 px-4 py-2">Mobile Number</th>
                     <th class="border border-gray-300 px-4 py-2">Email</th>
+                    <th class="border border-gray-300 px-4 py-2">Preferred Language</th>
                     <th class="border border-gray-300 px-4 py-2">Actions</th>
                 </tr>
             </thead>
@@ -61,6 +62,9 @@
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
                             {{ $item->email }}
+                        </td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            {{ $item->language->name }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <button type="button" wire:click="editRow({{ $item->parent_id }})"

@@ -20,5 +20,10 @@ class Language extends Model
         return $this->hasMany(Voice::class);
     }
 
+    public function parents()
+    {
+        return $this->hasMany(ParentModel::class);
+    }
+
     public $timestamps=false;
 }

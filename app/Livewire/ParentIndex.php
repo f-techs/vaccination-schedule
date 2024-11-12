@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Language;
 use Livewire\Component;
 use App\Models\ParentModel;
 
@@ -9,10 +10,12 @@ class ParentIndex extends Component
 {
 
    public $parents;
+   public $languages;
+
 
    public function mount()
    {
-     $this->parents = ParentModel::all();
+     $this->parents = ParentModel::with('language')->get();
    }
 
    public function removeRow($id)
@@ -27,14 +30,14 @@ class ParentIndex extends Component
        }
 
        // Refresh the parent records
-       $this->parents = ParentModel::all();
+       $this->parents = ParentModel::with('language')->get();
    }
 
    public function editRow($id)
     {
         return redirect()->route('parent.edit', ['id' => $id]);
     }
-    
+
     public function render()
     {
         return view('livewire.parent-index');

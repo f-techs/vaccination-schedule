@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Language;
 use Livewire\Component;
 use App\Models\ParentModel;
 
@@ -10,16 +11,20 @@ class EditParent extends Component
     // public $id;
     public $parentId;
     public $parent_name, $child_name, $mobile_number, $date_of_birth, $email;
+    public $languages=null;
+    public $language;
 
     public function mount($id)
     {
         $parent = ParentModel::findOrFail($id); // Fetch the record by ID
+        $this->languages =  Language::all();
         $this->parentId = $parent->parent_id;
         $this->parent_name = $parent->parent_name;
         $this->child_name = $parent->child_name;
         $this->mobile_number = $parent->mobile_number;
         $this->date_of_birth = $parent->date_of_birth;
         $this->email = $parent->email;
+        $this->language = $parent->language_id;
     }
 
     public function update()

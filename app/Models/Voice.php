@@ -14,13 +14,19 @@ class Voice extends Model
  protected $fillable = [
      'language_id',
      'title',
+     'message_body',
      'voice',
      'created_by'
  ];
- 
+
  public function language()
  {
-   return $this->belongsTo(Language::class);
+   return $this->belongsTo(Language::class, 'language_id');
+ }
+
+ public function messages()
+ {
+     return $this->hasMany(Message::class);
  }
  public $timestamps=false;
 }

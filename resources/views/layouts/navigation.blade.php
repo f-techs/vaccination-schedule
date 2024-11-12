@@ -4,11 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                {{-- <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
-                </div> --}}
+                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -16,10 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('parents')" :active="request()->routeIs('parents')">
-                        {{ __('Parents') }}
+                        {{ __('Parents Records') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('vaccine-messages')" :active="request()->routeIs('vaccine-messages')">
+                        {{ __('Vaccination Messages') }}
                     </x-nav-link>
                     <x-nav-link :href="route('voices')" :active="request()->routeIs('voices')">
-                        {{ __('Recordings') }}
+                        {{ __('Voice Recordings') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('messages')" :active="request()->routeIs('messages')">
+                        {{ __('Schedule Vaccinations') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -44,6 +50,9 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('register')">
+                            {{ __('Register') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
