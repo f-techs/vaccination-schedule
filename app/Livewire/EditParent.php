@@ -43,6 +43,7 @@ class EditParent extends Component
             'child_name' => $this->child_name,
             'mobile_number' => $this->mobile_number,
             'date_of_birth' => $this->date_of_birth,
+            'language_id'=>$this->language,
             'email' => $this->email,
         ]);
 

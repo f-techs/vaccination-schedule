@@ -3,26 +3,49 @@
         <h2 class="text-lg font-bold">Schedule Vaccination</h2>
     </div>
     @if (session('message'))
-        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-            {{ session('message') }}
+        <div class="mb-4 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded">
+            {{ session('message') }} {{$success}} out of {{$totalMessages}} message(s) sent
         </div>
     @endif
+
+    @if(session('emailSendingError'))
+        <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        {{ session('emailSendingError') }}
+        </div>
+    @endif
+
+
     <form wire:submit.prevent="save">
+{{--        <div class="mb-4">--}}
+{{--            <label class="block text-sm font-medium text-gray-700 mb-2">Filter By Language</label>--}}
+{{--            <select type="text" id="language" wire:model.live="language"--}}
+{{--                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">--}}
+{{--                <option  value="">Select Language</option>--}}
+{{--                @foreach($languages as $item)--}}
+{{--                    <option value="{{$item->language_id}}">{{$item->name}}</option>--}}
+{{--                @endforeach--}}
+{{--            </select>--}}
+{{--            @error('language')--}}
+{{--            <span class="text-red-500 text-sm">{{ $message }}</span>--}}
+{{--            @enderror--}}
+{{--        </div>--}}
         <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Filter By Language</label>
-            <select type="text" id="language" wire:model.live="language"
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Message</label>
+            <select type="text" id="voice" wire:model="message"
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
-                <option  value="">Select Language</option>
-                @foreach($languages as $item)
-                    <option value="{{$item->language_id}}">{{$item->name}}</option>
+                <option  value="">Select Message</option>
+                @foreach($vaccineMessages as $item)
+                    <option  value="{{$item->vaccine_message_id}}">{{$item->title}}</option>
                 @endforeach
             </select>
-            @error('language')
+            @error('message')
             <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
+
         </div>
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700 mb-2">Parents</label>
+            @if(session('danger')) <span class="text-red-500 text-sm">{{session('danger')}}</span> @endif
             <select type="text" id="language" wire:model.live="parent"
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
                 <option  value="">Select Parents</option>
@@ -52,19 +75,7 @@
         </div>
 
 
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Voice Message</label>
-            <select type="text" id="voice" wire:model="voice"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
-                <option  value="">Select Message</option>
-                @foreach($voices as $item)
-                    <option  value="{{$item->voice_id}}">{{$item->title}}</option>
-                @endforeach
-            </select>
-            @error('voice')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
+
 
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700 mb-2">Schedule Date</label>
@@ -81,7 +92,7 @@
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
                 <option  value="">Select Message Type</option>
                 @foreach($messageTypes as $item)
-                    <option value="{{$item->message_type_id}}">{{$item->type}}</option>
+                    <option value="{{$item->message_type_id ?? ''}}">{{$item->type ?? ''}}</option>
                 @endforeach
             </select>
             @error('message_type')
@@ -99,4 +110,12 @@
                class="inline-block bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Cancel</a>
         </div>
     </form>
+    <!-- Loading Spinner -->
+    <div wire:target="save" wire:loading.delay class="loading-overlay">
+        <div class="spinner"></div>
+        <p class="loading-text">Processing...</p>
+    </div>
+{{--        <p class="text-white text-lg font-semibold">Processing... {{$success}} out of {{$totalMessages}}</p>--}}
+
+
 </div>

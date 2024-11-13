@@ -30,9 +30,19 @@ class MessageController extends Controller
     {
         return view('vaccine-message.create ');
     }
+
+    public function editVaccineMessage($id)
+    {
+        return view('vaccine-message.edit', ['id'=>$id]);
+    }
     public function alert($code)
     {
         return view('vaccineAlert.index', ['code'=>$code]);
+    }
+
+    public function buyCredit()
+    {
+        return view('credit.index');
     }
 
     /**

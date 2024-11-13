@@ -16,6 +16,32 @@ class VaccineMessageIndex extends Component
     {
      $this->vaccineMessages = VaccineMessage::all();
     }
+
+    public function editRow($id)
+    {
+        return redirect()->route('vaccine-message.edit', ['id' => $id]);
+    }
+
+    public function addVoice($code){
+        return redirect()->route('voice.create', ['vaccineMsg' => $code]);
+    }
+    public function removeRow($id)
+    {
+        // Find and delete the record
+        $record = VaccineMessage::find($id);
+        if ($record) {
+            $record->delete();
+            session()->flash('message', 'Record successfully removed!');
+        } else {
+            session()->flash('error', 'Record not found'.$id);
+        }
+
+        // Refresh the parent records
+        $this->vaccineMessages = VaccineMessage::all();
+    }
+
+
+
     public function render()
     {
         return view('livewire.vaccine-message-index');

@@ -40,10 +40,10 @@
                 @foreach ($parents as $item)
                     <tr class="bg-white hover:bg-gray-50">
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->parent_name }}
+                            {{ $item->parent_name ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->child_name }}
+                            {{ $item->child_name ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
                             @if ($item->gender === 'Male')
@@ -55,16 +55,16 @@
                             @endif
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->date_of_birth }}
+                            {{ $item->date_of_birth ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->mobile_number }}
+                            {{ $item->mobile_number ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->email }}
+                            {{ $item->email ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->language->name }}
+                            {{ $item->language->name ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <button type="button" wire:click="editRow({{ $item->parent_id }})"

@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Voice;
 use Illuminate\Http\Request;
 
-class VoiceController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('voices.index');
+        return view('language.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $vaccineMsg = null  )
+    public function create()
     {
-        return view('voices.create', ['vaccineMsg'=>$vaccineMsg]);
+        return view('language.create');
     }
 
     /**
@@ -34,7 +33,7 @@ class VoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Voice $voice)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class VoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Voice $voice)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class VoiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Voice $voice)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class VoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Voice $voice)
+    public function destroy(string $id)
     {
         //
     }

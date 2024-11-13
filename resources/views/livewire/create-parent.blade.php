@@ -78,7 +78,7 @@
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
                 <option selected value="">Select Language</option>
                 @foreach ($languages as $item)
-                    <option value="{{$item->language_id}}" selected>{{$item->name}}</option>
+                    <option value="{{$item->language_id ?? ''}}" selected>{{$item->name ?? ''}}</option>
                 @endforeach
             </select>
             @error('language') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror

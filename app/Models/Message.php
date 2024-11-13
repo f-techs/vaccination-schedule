@@ -10,7 +10,7 @@ class Message extends Model
     protected $primaryKey = 'message_id';
 
     protected $fillable = [
-        'parent_id', 'voice_id', 'message_type_id', 'vaccine_date', 'code', 'created_by'
+        'parent_id', 'voice_id', 'message_type_id', 'language_id', 'vaccine_date', 'vaccine_message_id', 'code', 'created_by'
     ];
 
     public $timestamps = false;
@@ -25,4 +25,13 @@ class Message extends Model
     public function messageType(){
         return $this->belongsTo(MessageType::class, 'message_type_id');
     }
+    public function language(){
+        return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function vaccineMessages(){
+        return $this->belongsTo(VaccineMessage::class, 'vaccine_message_id');
+    }
+
+
 }

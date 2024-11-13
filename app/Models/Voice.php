@@ -13,8 +13,7 @@ class Voice extends Model
 
  protected $fillable = [
      'language_id',
-     'title',
-     'message_body',
+     'vaccine_message_id',
      'voice',
      'created_by'
  ];
@@ -22,6 +21,10 @@ class Voice extends Model
  public function language()
  {
    return $this->belongsTo(Language::class, 'language_id');
+ }
+
+ public function vaccineMessage(){
+     return $this->belongsTo(VaccineMessage::class, 'vaccine_message_id');
  }
 
  public function messages()

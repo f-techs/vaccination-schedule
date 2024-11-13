@@ -2,7 +2,7 @@
     <div class="overflow-x-auto">
         <div class="mb-4 flex justify-between items-center">
             <h2 class="text-lg font-bold">Voice Recordings</h2>
-            <a href="{{route('voice.create', ['message'=>null])}}">
+            <a href="{{route('voice.create')}}">
                 <button type="button" wire:click="addRow"
                     class="bg-green-900 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none">
                     Add
@@ -36,15 +36,15 @@
                 @foreach ($voices as  $item)
                     <tr class="bg-white hover:bg-gray-50">
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->title }}
+                            {{ $item->vaccineMessage->title ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
-                            {{ $item->language->name }}
+                            {{ $item->language->name ?? '' }}
                         </td>
                         <td class="border border-gray-300 px-4 py-2">
                             @if ($item->voice)
                                 <audio controls>
-                                    <source src="{{ asset('storage/' . $item->voice) }}" type="audio/mpeg">
+                                    <source src="{{ asset('storage/' . $item->voice ?? '') }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
                                 </audio>
                             @else
@@ -54,7 +54,7 @@
                         <td class="border border-gray-300 px-4 py-2 text-center">
 {{--                            <button type="button" wire:click="editRow({{ $item->parent_id }})"--}}
 {{--                                class="text-blue-500 hover:underline">Edit</button>--}}
-                            <button type="button" wire:click="removeRow({{ $item->voice_id }})"
+                            <button type="button" wire:click="removeRow({{ $item->voice_id ?? '' }})"
                                 class="text-red-500 hover:underline">Remove</button>
                         </td>
                     </tr>

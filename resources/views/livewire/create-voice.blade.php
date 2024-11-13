@@ -16,14 +16,15 @@
     <form wire:submit.prevent="save" class="space-y-6">
         <div>
             <label for="language" class="block text-sm font-medium text-gray-700">Vaccination Message</label>
-            <select type="text" id="language" wire:model="language"
+            <select type="text" id="language" wire:model="message"
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
-                <option selected value="">Select Message</option>
-                @foreach ($languages as $item)
-                    <option value="{{$item->language_id}}" selected>{{$item->name}}</option>
+                <option selected value="">Select Messages</option>
+                @foreach ($vaccineMessages as $item)
+                    <option value="{{$item->vaccine_message_id ?? ''}}" >{{$item->title ?? ''}}</option>
                 @endforeach
             </select>
-            @error('language') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            @if(session('record-exist'))<span class="text-red-500 text-sm">{{ session('record-exist') }}</span> @endif
+            @error('message') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
         <div>
             <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
@@ -31,7 +32,7 @@
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
                 <option selected value="">Select Language</option>
                 @foreach ($languages as $item)
-                <option value="{{$item->language_id}}" selected>{{$item->name}}</option>
+                <option value="{{$item->language_id ?? ''}}" selected>{{$item->name ?? ''}}</option>
                 @endforeach
             </select>
             @error('language') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
@@ -39,7 +40,7 @@
 
         <div>
             <label for="voice" class="block text-sm font-medium text-gray-700">Voice</label>
-            <input type="file" id="voice" wire:model="voice" accept="audio/*" hidden>
+            <input type="file" id="voice" wire:model="voice_code" accept="audio/*" hidden>
 
             <div class="mt-2 flex space-x-2">
                 <button type="button" id="startRecording"

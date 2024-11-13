@@ -12,7 +12,8 @@ class VoiceIndex extends Component
 
     public function mount()
     {
-        $this->voices = Voice::with('language')->get();
+        $this->voices = Voice::with(['language', 'vaccineMessage'])->get();
+      //  dd($this->voices);
     }
 
     public function removeRow($id)

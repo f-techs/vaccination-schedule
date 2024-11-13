@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('languages')" :active="request()->routeIs('languages')">
+                        {{ __('Languages') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('parents')" :active="request()->routeIs('parents')">
                         {{ __('Parents Records') }}
                     </x-nav-link>
@@ -46,13 +49,26 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('register')">
+                            {{ __('Add New User') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
                         <x-dropdown-link :href="route('register')">
-                            {{ __('Register') }}
+                            {{ __('EMAIL credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->email}}
                         </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('register')">
+                            {{ __('SMS credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->sms}}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('credit.buy')">
+                            {{ __('Buy Credits') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -95,9 +111,25 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-dropdown-link :href="route('register')">
+                    {{ __('Add New User') }}
+                </x-dropdown-link>
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+
+                <x-dropdown-link :href="route('register')">
+                    {{ __('EMAIL credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->email}}
+                </x-dropdown-link>
+
+                <x-dropdown-link :href="route('register')">
+                    {{ __('SMS credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->sms}}
+                </x-dropdown-link>
+
+                <x-dropdown-link :href="route('credit.buy')">
+                    {{ __('Buy Credits') }}
+                </x-dropdown-link>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

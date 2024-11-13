@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
@@ -28,12 +29,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-parent', [ParentController::class, 'create'])->name('parent.create');
     Route::get('/edit-parent/{id}', [ParentController::class, 'edit'])->name('parent.edit');
     Route::get('/voices', [VoiceController::class, 'index'])->name('voices');
-    Route::get('/create-voice/{message?}', [VoiceController::class, 'create'])->name('voice.create');
+    Route::get('/create-voice/{vaccineMsg?}', [VoiceController::class, 'create'])->name('voice.create');
     Route::get('/message', [MessageController::class, 'index'])->name('messages');
     Route::get('/create-message', [MessageController::class, 'create'])->name('message.create');
     Route::get('/vaccine-messages', [MessageController::class, 'indexVaccineMessage'])->name('vaccine-messages');
     Route::get('/create-vaccine-messages', [MessageController::class, 'createVaccineMessage'])->name('vaccine-message.create');
-    Route::get('/edit-vaccine-messages', [MessageController::class, 'editVaccineMessage'])->name('vaccine-message.edit');
+    Route::get('/edit-vaccine-messages/{id}', [MessageController::class, 'editVaccineMessage'])->name('vaccine-message.edit');
+    Route::get('/languages', [LanguageController::class, 'index'])->name('languages');
+    Route::get('/create-language', [LanguageController::class, 'create'])->name('language.create');
+    Route::get('/credits/{code}', [MessageController::class, 'credit'])->name('credit');
+    Route::get('/buy-credits', [MessageController::class, 'buyCredit'])->name('credit.buy');
+
+
 });
 
 //app routes

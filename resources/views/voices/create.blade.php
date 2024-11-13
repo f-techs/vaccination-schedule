@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('create-voice', ['message'=>$message])
+    @livewire('create-voice', ['vaccineMsg'=>$vaccineMsg])
 </x-app-layout>

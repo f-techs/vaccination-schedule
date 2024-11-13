@@ -39,27 +39,27 @@
             @foreach ($schedules as $item)
                 <tr class="bg-white hover:bg-gray-50">
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->parent->parent_name }}
+                        {{ $item->parent->parent_name ?? '' }}
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->parent->child_name }}
+                        {{ $item->parent->child_name ?? ''}}
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->message_title }}
+                        {{ $item->vaccineMessages->title ?? '' }}
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->messageType->type }}
+                        {{ $item->messageType->type ?? ''}}
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->voice->language->name }}
+                        {{ $item->language->name ?? ''}}
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
-                        {{ $item->mobile_number }}
+                        {{ $item->status == 0 ? 'UnRead' : 'Read'}}
                     </td>
                     <td class="border border-gray-300 px-4 py-2 text-center">
 {{--                        <button type="button" wire:click="editRow({{ $item->parent_id }})"--}}
 {{--                                class="text-blue-500 hover:underline">Edit</button>--}}
-                        <button type="button" wire:click="removeRow({{ $item->parent_id }})"
+                        <button type="button" wire:click="removeRow({{ $item->message_id ?? '' }})"
                                 class="text-red-500 hover:underline">Remove</button>
                     </td>
                 </tr>

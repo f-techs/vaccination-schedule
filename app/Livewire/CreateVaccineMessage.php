@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\VaccineMessage;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class CreateVaccineMessage extends Component
@@ -18,9 +19,11 @@ class CreateVaccineMessage extends Component
     public function save()
     {
         $this->validate();
+        $code =Str::uuid();
         VaccineMessage::create([
            'title'=>$this->title,
-           'message_body'=>$this->message_body
+           'message_body'=>$this->message_body,
+            'code'=>$code
         ]);
         $this->reset();
         session()->flash('message', 'Record successfully created!');
