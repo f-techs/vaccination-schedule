@@ -6,6 +6,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoiceController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,10 +40,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-language', [LanguageController::class, 'create'])->name('language.create');
     Route::get('/credits/{code}', [MessageController::class, 'credit'])->name('credit');
     Route::get('/buy-credits', [MessageController::class, 'buyCredit'])->name('credit.buy');
-
-
 });
 
+
+//Artisan routes
+Route::get('/storage-link', function(){
+    Artisan::call('storage:link');
+    return 'Storage link has been created successfully!';
+});
 //app routes
 
 require __DIR__.'/auth.php';
