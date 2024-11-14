@@ -101,6 +101,21 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('languages')" :active="request()->routeIs('languages')">
+                {{ __('Languages') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('parents')" :active="request()->routeIs('parents')">
+                {{ __('Parents Records') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('vaccine-messages')" :active="request()->routeIs('vaccine-messages')">
+                {{ __('Vaccination Messages') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('voices')" :active="request()->routeIs('voices')">
+                {{ __('Voice Recordings') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('messages')" :active="request()->routeIs('messages')">
+                {{ __('Schedule Vaccinations') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -111,25 +126,25 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-dropdown-link :href="route('register')">
+                <x-responsive-nav-link :href="route('register')">
                     {{ __('Add New User') }}
-                </x-dropdown-link>
+                </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <x-dropdown-link :href="route('register')">
+                <x-responsive-nav-link :href="route('register')">
                     {{ __('EMAIL credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->email}}
-                </x-dropdown-link>
+                </x-responsive-nav-link>
 
-                <x-dropdown-link :href="route('register')">
+                <x-responsive-nav-link :href="route('register')">
                     {{ __('SMS credits ')   }}{{\App\Models\Credit::where('project_code', 'vaccine-alert')->first()->sms}}
-                </x-dropdown-link>
+                </x-responsive-nav-link>
 
-                <x-dropdown-link :href="route('credit.buy')">
+                <x-responsive-nav-link :href="route('credit.buy')">
                     {{ __('Buy Credits') }}
-                </x-dropdown-link>
+                </x-responsive-nav-link>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
