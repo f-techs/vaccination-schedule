@@ -10,7 +10,7 @@ class Message extends Model
     protected $primaryKey = 'message_id';
 
     protected $fillable = [
-        'parent_id', 'voice_id', 'message_type_id', 'language_id', 'vaccine_date', 'vaccine_message_id', 'code', 'created_by'
+        'parent_id', 'voice_id', 'message_type_id', 'language_id', 'status', 'vaccine_date', 'vaccine_message_id', 'code', 'created_by'
     ];
 
     public $timestamps = false;

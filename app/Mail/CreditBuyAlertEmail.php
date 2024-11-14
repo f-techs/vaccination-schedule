@@ -22,8 +22,8 @@ class CreditBuyAlertEmail extends Mailable
     public function build()
     {
         return $this->subject('Credit Buying')
-            ->from('no-reply@vaccine-schedule-generator.online', 'F-TECHS CONSULT')
-            ->view('emails.credit-alert-email');
+            ->from('no-reply@f-techsconsult.com', 'F-TECHS CONSULT')
+            ->view('emails.buy-credit-alert-email');
     }
 
     /**

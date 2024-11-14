@@ -45,6 +45,11 @@ class MessageController extends Controller
         return view('credit.index');
     }
 
+    public function credit($code)
+    {
+        return view('credit.confirm-credits-buy', ['code'=>$code]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

@@ -9,6 +9,11 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
     require $maintenance;
 }
 
+
+
+// require the AutoLoader.php file in the SDK
+require __DIR__.'/../app/SMSlib/Zenoph/Notify/AutoLoader.php';
+
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 

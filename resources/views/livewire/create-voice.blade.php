@@ -82,6 +82,10 @@
             <a href="{{ route('voices') }}"
                class="inline-block bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Cancel</a>
         </div>
+        <div wire:target="save" wire:loading.delay class="loading-overlay">
+            <div class="spinner"></div>
+            <p class="loading-text">Processing...</p>
+        </div>
     </form>
 
 
@@ -143,7 +147,8 @@
         document.getElementById('voice').value = ''; // Clear file input
     });
 
-    document.getElementById('uploadVoice').addEventListener('click', () => {
+    document.getElementById('uploadVoice').addEventListener('click', (e) => {
+        e.value='Uploading';
         if (window.recordedFile) {
         @this.upload('voice', window.recordedFile,
             (uploadedFilename) => {
@@ -154,6 +159,7 @@
             }
         );
         }
+        e.value='Upload Voice';
     });
 
 </script>

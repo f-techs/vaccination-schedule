@@ -33,8 +33,6 @@ class CreateVoice extends Component
     {
         $checkUniqueness = Voice::where(['vaccine_message_id'=>$this->message, 'language_id'=>$this->language])->get()->count();
         if($checkUniqueness < 1){
-
-
         $this->validate([
             'message' => 'required',
             'language' => 'required|string|max:255',
@@ -60,7 +58,7 @@ class CreateVoice extends Component
 
         session()->flash('message', 'Voice recorded and saved successfully!');
         }else{
-            session()->flash('record-exist', 'Voice exist for the selected message');
+            session()->flash('record-exist', 'Voice already exist in the language selected for this message');
         }
     }
 

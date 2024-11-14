@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/vaccine-alert/{code}',[MessageController::class, 'alert'])->name('vaccine.alert');
 
 Route::get('/dashboard', function () {
@@ -22,7 +23,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-vaccine-messages/{id}', [MessageController::class, 'editVaccineMessage'])->name('vaccine-message.edit');
     Route::get('/languages', [LanguageController::class, 'index'])->name('languages');
     Route::get('/create-language', [LanguageController::class, 'create'])->name('language.create');
-    Route::get('/credits/{code}', [MessageController::class, 'credit'])->name('credit');
     Route::get('/buy-credits', [MessageController::class, 'buyCredit'])->name('credit.buy');
+    Route::get('/credits/{code}', [MessageController::class, 'credit'])->name('credit');
 });
 
 

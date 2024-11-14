@@ -45,9 +45,15 @@
                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
             @error('clientPhone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="text" id="title" wire:model="clientEmail"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
+            @error('clientEmail') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
 
         <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-            Total Credit Cost:<strong>{{$totalAmount}}</strong>. Pay to <strong>0559153528 (F-TECHS CONSULT)</strong>. Use your mobile number as reference.
+            Total Credit Cost: GHC <strong>{{$totalAmount}}</strong>. Pay to <strong>0559153528 (F-TECHS CONSULT)</strong>. Use your mobile number as reference.
         </div>
 
 
@@ -61,7 +67,7 @@
                 <div class="spinner"></div>
                 <p class="loading-text">Processing...</p>
             </div>
-            <a href="{{ route('vaccine-messages') }}"
+            <a href="{{ route('dashboard') }}"
                class="inline-block bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Cancel</a>
         </div>
     </form>

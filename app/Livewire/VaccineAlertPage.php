@@ -23,6 +23,7 @@ class VaccineAlertPage extends Component
     {
         $record = Message::with(['parent', 'voice', 'messageType', 'language', 'vaccineMessages'])
             ->where('code', $code)->first();
+
         //dd($record);
         if($record){
             $this->vaccineMessage = $record->vaccine_message_id;
@@ -32,6 +33,8 @@ class VaccineAlertPage extends Component
        $this->messageVoice = $record->voice->voice;
        $this->updatedVoice = $record->voice->voice;
        $this->language=$record->language->language_id;
+       $record->update(['status'=>1]);
+
         }
       // dd($this->voices);
 

@@ -10,7 +10,12 @@
 
     <!-- Audio Section -->
 {{--    {{$messageVoice}}--}}
-    <div class="mb-6">
+    <div class="relative mb-6">
+        <div
+            wire:loading
+            wire:target="language"
+            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin z-10">
+        </div>
         <audio controls autoplay  class="w-full" id="audioPlayer">
             <source src="{{ asset('storage/' . $messageVoice ?? '') }}" type="audio/mpeg">
             Your browser does not support the audio element.

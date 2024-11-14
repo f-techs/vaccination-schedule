@@ -8,5 +8,8 @@ class Credit extends Model
 {
     protected $table ='credits';
     protected $primaryKey='credit_id';
-
+   protected $fillable = [
+       'email', 'sms'
+   ];
+   public $timestamps = false;
 }

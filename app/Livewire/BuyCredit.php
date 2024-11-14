@@ -15,28 +15,33 @@ class BuyCredit extends Component
     public $credits=0;
     public $clientPhone;
     public $creditType;
+    public $clientEmail;
+
 
     public function save()
     {
         $this->validate([
             'creditType' => 'required',
             'clientPhone'=>'required|digits:10',
-            'credits'=>'required|integer'
+            'credits'=>'required|integer',
+            'clientEmail'=>'required'
         ]);
         $buyCredit = CreditTransaction::create([
            'credit_type'=>$this->creditType,
            'credits_requested'=>$this->credits,
            'client_phone'=>$this->clientPhone,
            'credit_amount'=>$this->totalAmount,
+           'client_email'=>$this->clientEmail,
            'code'=>Str::uuid(),
         ]);
         if($buyCredit){
-//            try {
+            try {
                 Mail::to('ftechs20436@gmail.com')->send(new CreditBuyAlertEmail($buyCredit->code));
                 session()->flash('message', 'Request Sent Successfully. Credit will be updated Soon');
-//            }catch (\Exception $e){
-//                session()->flash('emailSendingError', 'Oops! Something went wrong. Refresh and Try Again');
-//            }
+            }catch (\Exception $e){
+                session()->flash('emailSendingError', 'Oops! Something went wrong. Refresh and Try Again');
+            }
+            $this->reset();
 
         }
     }
