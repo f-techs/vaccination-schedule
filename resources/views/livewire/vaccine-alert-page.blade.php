@@ -3,6 +3,8 @@
     <h1 class="text-2xl font-bold text-green-600 mb-6 text-center">Vaccination Alert</h1>
 
     <h6 class="text-lg font-bold text-green-900 mb-6 text-center">{{$messageTitle ?? ''}}</h6>
+
+    <h6 class="text-lg font-bold text-green-900 mb-6 text-center">Date: {{$vaccineDate ?? ''}}</h6>
     <!-- Message Section -->
     <p class="text-center mb-6">
         {{$messageBody ?? ''}}

@@ -11,13 +11,14 @@ class VaccineAlertPage extends Component
     public $code;
     public $messageTitle;
     public $messageBody;
-    public $languages;
+    public $languages=[];
     public $language;
     public $messageVoice;
     public $voices=[];
     public $voice;
     public $vaccineMessage;
     public $updatedVoice;
+    public $vaccineDate;
 
     public function mount($code)
     {
@@ -30,6 +31,7 @@ class VaccineAlertPage extends Component
             $this->languages = Voice::with('language')->where('vaccine_message_id', $record->vaccineMessages->vaccine_message_id)->get();
        $this->messageTitle =$record->vaccineMessages->title;
        $this->messageBody =$record->vaccineMessages->message_body;
+       $this->vaccineDate = $record->vaccine_date;
        $this->messageVoice = $record->voice->voice;
        $this->updatedVoice = $record->voice->voice;
        $this->language=$record->language->language_id;

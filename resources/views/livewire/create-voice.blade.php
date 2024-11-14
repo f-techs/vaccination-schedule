@@ -59,7 +59,9 @@
 
             @error('voice') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
-
+        <div id="uploadingIndicator" class="hidden mt-2 text-blue-500 text-sm">
+            Upload Voice Please wait...
+        </div>
         <div id="audioPreview" class="mt-4 hidden">
             <h4 class="text-sm font-medium text-gray-700">Audio Preview:</h4>
             <audio controls id="audioPlayer" class="mt-2 w-full"></audio>
@@ -148,18 +150,18 @@
     });
 
     document.getElementById('uploadVoice').addEventListener('click', (e) => {
-        e.value='Uploading';
+        document.getElementById('uploadingIndicator').classList.remove('hidden');
         if (window.recordedFile) {
         @this.upload('voice', window.recordedFile,
             (uploadedFilename) => {
                 console.log('Upload complete: ' + uploadedFilename);
+                document.getElementById('recordingIndicator').classList.add('hidden');
             },
             (error) => {
                 console.log('Upload error: ' + error);
             }
         );
         }
-        e.value='Upload Voice';
     });
 
 </script>
