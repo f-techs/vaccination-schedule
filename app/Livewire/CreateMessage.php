@@ -89,6 +89,7 @@ class CreateMessage extends Component
                             }
                     }elseif($message && $this->message_type==1 && $this->credit != 0){
                         try {
+                                    $messageUrl = route('vaccine.alert', ['code'=>$message->code]);
                                     $request = new SMSRequest();
                                     $request->setHost('api.smsonlinegh.com');
                                     $request->setAuthModel(AuthModel::API_KEY);
@@ -101,8 +102,8 @@ class CreateMessage extends Component
                                     $this->success = $this->success + 1;
                                     $this->credit = $this->credit - 1;
                                 }catch (Exception $ex) {
-                                   // dd ($ex->getMessage());
-                                  session()->flash('messagingError', 'Oops! sSomething went wrong. Refresh and Try Again');
+                                  // dd ($ex->getMessage());
+                                  session()->flash('messagingError', 'Oops! Something went wrong. Refresh and Try Again');
                                 }
                     }
           }
@@ -117,7 +118,7 @@ class CreateMessage extends Component
                   'sms'=>$this->credit
               ]);
           }
-                $this->reset();
+                $this->resetExcept(['success', 'totalMessages']);
                 $this->resetData();
       }else{
           session()->flash('no-credit', 'There is no enough credit');
