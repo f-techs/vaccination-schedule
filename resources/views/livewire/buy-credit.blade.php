@@ -53,7 +53,7 @@
         </div>
 
         <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-            Total Credit Cost: GHC <strong>{{$totalAmount}}</strong>. Pay to <strong>0559153528 (F-TECHS CONSULT)</strong>. Use your mobile number as reference.
+            Total Credit Cost: GHC <strong>{{$totalAmount}}</strong>. Pay to <strong>MERCHANTID: 796341 (F-TECHS CONSULT)</strong>. Use your mobile number as reference.
         </div>
 
 
