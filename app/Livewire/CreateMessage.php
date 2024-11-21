@@ -96,7 +96,7 @@ class CreateMessage extends Component
                                     $request->setAuthApiKey(env('SMS_API_KEY'));
                                     $request->setSender('VAXNOTIFY');
                                     $request->setMessage("Hello {$row->parent_name}! This is to remind you of your child's vaccination. click on this link {$messageUrl} for more details");
-                                    $destsArr = array($row->mobile_number, $row->guardian_number);
+                                    $destsArr = array($row->mobile_number, $row->guardian_mobile);
                                     $request->addDestinationsFromCollection($destsArr);
                                     $request->setSMSType(SMSType::GSM_DEFAULT);
                                     //$request->addDestination($row->mobile_number);
