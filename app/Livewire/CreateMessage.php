@@ -96,13 +96,15 @@ class CreateMessage extends Component
                                     $request->setAuthApiKey(env('SMS_API_KEY'));
                                     $request->setSender('VAXNOTIFY');
                                     $request->setMessage("Hello {$row->parent_name}! This is to remind you of your child's vaccination. click on this link {$messageUrl} for more details");
+                                    $destsArr = array($row->mobile_number, $row->guardian_number);
+                                    $request->addDestinationsFromCollection($destsArr);
                                     $request->setSMSType(SMSType::GSM_DEFAULT);
-                                    $request->addDestination($row->mobile_number);
+                                    //$request->addDestination($row->mobile_number);
                                     $request->submit();
                                     $this->success = $this->success + 1;
-                                    $this->credit = $this->credit - 1;
+                                    $this->credit = $this->credit - 2;
                                 }catch (Exception $ex) {
-                                  // dd ($ex->getMessage());
+                                   //dd ($ex->getMessage());
                                   session()->flash('messagingError', 'Oops! Something went wrong. Refresh and Try Again');
                                 }
                     }

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Language;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\ParentModel;
 
@@ -13,6 +14,9 @@ class EditParent extends Component
     public $parent_name, $child_name, $mobile_number, $date_of_birth, $email;
     public $languages=null;
     public $language;
+    public $guardian_name;
+
+    public $guardian_mobile;
 
     public function mount($id)
     {
@@ -25,6 +29,8 @@ class EditParent extends Component
         $this->date_of_birth = $parent->date_of_birth;
         $this->email = $parent->email;
         $this->language = $parent->language_id;
+        $this->guardian_name = $parent->guardian_name;
+        $this->guardian_mobile = $parent->guardian_mobile;
     }
 
     public function update()
@@ -35,6 +41,9 @@ class EditParent extends Component
             'mobile_number' => 'required|string|max:15',
             'date_of_birth' => 'required|date',
             'email' => 'required|email|max:255',
+            'guardian_name'=>'required',
+            'guardian_mobile'=>'required',
+            'language' => 'required',
         ]);
 
         $parent = ParentModel::find($this->parentId);
@@ -45,6 +54,9 @@ class EditParent extends Component
             'date_of_birth' => $this->date_of_birth,
             'language_id'=>$this->language,
             'email' => $this->email,
+            'guardian_name'=>$this->guardian_name,
+            'guardian_mobile'=>$this->guardian_mobile,
+            'created_by'=>Auth::user()->id
         ]);
 
         session()->flash('message', 'Record successfully updated!');

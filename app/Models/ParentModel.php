@@ -19,7 +19,9 @@ class ParentModel extends Model
         'email',
         'language_id',
         'gender',
-        'created_by'
+        'created_by',
+        'guardian_name',
+        'guardian_mobile'
     ];
 
     public function language(){

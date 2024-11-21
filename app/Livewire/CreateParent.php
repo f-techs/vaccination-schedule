@@ -17,6 +17,10 @@ class CreateParent extends Component
     public $gender;
     public $languages=null;
     public $language;
+    public $guardian_name;
+
+    public $guardian_mobile;
+
 
     protected $rules = [
         'parent_name' => 'required|string|max:255',
@@ -25,7 +29,9 @@ class CreateParent extends Component
         'language' => 'required',
         'mobile_number' => 'required|digits:10',
         'email' => 'required|email|max:255|unique:parents',
-        'gender' => 'required'
+        'gender' => 'required',
+        'guardian_name'=>'required',
+        'guardian_mobile'=>'required'
     ];
 
     public function save()
@@ -40,6 +46,8 @@ class CreateParent extends Component
             'gender'=>$this->gender,
             'language_id'=>$this->language,
             'email' => $this->email,
+            'guardian_name'=>$this->guardian_name,
+            'guardian_mobile'=>$this->guardian_mobile,
             'created_by'=>Auth::user()->id
         ]);
         $this->reset();
